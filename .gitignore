@@ -1,0 +1,8 @@
+# git rm -r --cached .
+
+# build directory 
+./build
+
+# node modules 
+./node_modules
+
