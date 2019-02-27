@@ -1,0 +1,25 @@
+{
+    "name": "ts-telephone",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "tsc": "tsc",
+        "dev": "ts-node-dev --respawn --transpileOnly ./src/index.ts",
+        "prod": "tsc && node ./build/index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/bobbylite/ts-telephone.git"
+    },
+    "author": "bobbylite",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/bobbylite/ts-telephone/issues"
+    },
+    "homepage": "https://github.com/bobbylite/ts-telephone#readme",
+    "dependencies": {
+        "ts-node-dev": "^1.0.0-pre.32",
+        "typescript": "^3.3.3333"
+    }
+}
