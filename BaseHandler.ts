@@ -1,5 +1,5 @@
 import { injectable } from "inversify";
-import { IBaseHandler } from "../types/IBaseHandler";
+import { IBaseHandler } from "./types/IBaseHandler";
 import "reflect-metadata";
 
 @injectable()

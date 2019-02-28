@@ -5,9 +5,9 @@
     "main": "index.js",
     "scripts": {
         "tsc": "tsc",
-        "dev": "ts-node-dev --respawn --transpileOnly ./src/index.ts",
+        "dev": "ts-node-dev --respawn --transpileOnly ./index.ts",
         "prod": "tsc && node ./build/index.js",
-        "test": "ts-node-dev --respawn --transpileOnly ./src/test/test.ts"
+        "test": "ts-node-dev --respawn --transpileOnly ./test/test.ts"
     },
     "repository": {
         "type": "git",

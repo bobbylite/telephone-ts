@@ -1,4 +1,4 @@
-import { BaseHandler } from "../handlers/BaseHandler";
+import { BaseHandler } from "../BaseHandler";
 
 
 export class HelloHandler extends BaseHandler<IHello> {
