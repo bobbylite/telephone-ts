@@ -1,8 +1,8 @@
 import { HelloHandler, HelloHandler2 } from "../test/testhandlers";
-import { TelephoneJS } from "..";
+import { Telephonejs } from "..";
 import "reflect-metadata";
 
-var t = new TelephoneJS<IHello>();
+var t = new Telephonejs<IHello>();
 
 t.CreateQuietListeningWire<IHello>(HelloHandler, "IHello");
 t.CreateQuietListeningWire<IHello>(HelloHandler2, "IHello");

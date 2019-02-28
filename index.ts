@@ -1,7 +1,7 @@
 import { Container, injectable } from "inversify";
 import "reflect-metadata";
 
-export class TelephoneJS<T> {
+export class Telephonejs<T> {
     private Container: Container;
     private Type: symbol[] = []
     private implementationObjet: any
