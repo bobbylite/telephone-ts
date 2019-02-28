@@ -6,7 +6,8 @@
     "scripts": {
         "tsc": "tsc",
         "dev": "ts-node-dev --respawn --transpileOnly ./src/index.ts",
-        "prod": "tsc && node ./build/index.js"
+        "prod": "tsc && node ./build/index.js",
+        "test": "ts-node-dev --respawn --transpileOnly ./test/test.ts"
     },
     "repository": {
         "type": "git",

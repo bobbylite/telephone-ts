@@ -1,0 +1,3 @@
+interface IHello {
+    msg: string;
+}
