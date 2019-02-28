@@ -1,30 +1,83 @@
-import { ListenToType } from "./EventManager";
-import { Container } from "inversify";
+import { Container, getServiceIdentifierAsString, injectable } from "inversify";
 import "reflect-metadata";
-import { TestEvent } from "./Events/Test/TestEvent";
-import { IMessage } from "./Events/BaseEvent";
-import { TestHandler } from "./Handlers/Test/TestHandler";
 
-export class TelephoneJS {
+export class TelephoneJS<T> {
+    private Container: Container;
+    private Type: symbol[] = []
+    private implementationObjet: any
 
-    public static _container: Container = new Container();
-    public static TYPES: object;
-
-    private static _listener: ListenToType;
-
-    
-
-    public static ListenToMessage(message: IMessage, handler: any) {
-        TelephoneJS._listener = new ListenToType(message, handler);
+    public constructor() {
+        this.Container = new Container();
     }
 
-    public static SendMessage(message: string) {
-        TelephoneJS._listener.emit(message);
+    public ShoutOnWire<T>() : any {
+        this.Type.forEach((type)=> {
+            this.Container.get<T>(type);
+        })
+    }
+
+    public CreateQuietListeningWire<T>(Handler: any, symbolString: string) {
+        var sym = Symbol(symbolString);
+        this.Type.push(sym);
+        this.implementationObjet = Handler;
+        var x = this.Type.indexOf(sym);
+        this.Container.bind<T>(this.Type[x]).to(this.implementationObjet);
+    }
+
+    public OnWireHandler<T>() {
+
+    }
+
+}
+
+export interface IBaseHandler<T> {
+    HandleMessageInjection(injection: any): any;
+}
+
+@injectable()
+export abstract class BaseHandler<T> implements IBaseHandler<T>{
+    public HandleMessageInjection(injection: any) : any {
+        this.HandleMessage(injection);
+    }
+    protected abstract HandleMessage(message: any): any;
+}
+
+// User creation 
+interface IHello {
+    msg: string;
+}
+
+class HelloHandler extends BaseHandler<IHello> {
+    public msg: string;
+
+    public constructor() {
+        super();
+        this.msg = "Hello World";
+        this.HandleMessageInjection(this.msg);
+    }
+
+    public HandleMessage(message: any) {
+        console.log(message);
     }
 }
 
-var Test = new TestEvent("TestEvent");
-Test.message = {"1": 1, "2": 2};
+class HelloHandler2 extends BaseHandler<IHello> {
+    public msg: string;
 
-TelephoneJS.ListenToMessage(Test, TestHandler);
-TelephoneJS.SendMessage("TestEvent");
+    public constructor() {
+        super();
+        this.msg = "Hello World2";
+        this.HandleMessageInjection(this.msg);
+    }
+
+    public HandleMessage(message: any) {
+        console.log(message);
+    }
+}
+
+// example use
+
+var t = new TelephoneJS<IHello>();
+t.CreateQuietListeningWire<IHello>(HelloHandler, "IHello");
+t.CreateQuietListeningWire<IHello>(HelloHandler2, "IHello");
+t.ShoutOnWire<IHello>();
