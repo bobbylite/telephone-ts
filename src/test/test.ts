@@ -1,5 +1,6 @@
-import { TelephoneJS } from "../src";
 import { HelloHandler, HelloHandler2 } from "../test/testhandlers";
+import { TelephoneJS } from "..";
+import "reflect-metadata";
 
 var t = new TelephoneJS<IHello>();
 

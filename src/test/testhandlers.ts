@@ -1,4 +1,5 @@
-import { BaseHandler } from "../src/handlers/BaseHandler";
+import { BaseHandler } from "../handlers/BaseHandler";
+
 
 export class HelloHandler extends BaseHandler<IHello> {
     public msg: string;
