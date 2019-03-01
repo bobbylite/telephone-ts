@@ -1,12 +1,12 @@
 import { BaseHandler } from "../BaseHandler";
+import { INotHello, IHello } from "./testinterfaces";
 
-
-export class HelloHandler extends BaseHandler<IHello> {
+export class NotHelloHandler extends BaseHandler<INotHello> {
     public msg: string;
 
     public constructor() {
         super();
-        this.msg = "Hello World";
+        this.msg = "Not Hello World";
         this.MessageInjectionInCtor(this.msg);
     }
 
@@ -15,12 +15,12 @@ export class HelloHandler extends BaseHandler<IHello> {
     }
 }
 
-export class HelloHandler2 extends BaseHandler<IHello> {
+export class HelloHandler extends BaseHandler<IHello> {
     public msg: string;
 
     public constructor() {
         super();
-        this.msg = "Hello World2";
+        this.msg = "Hello World";
         this.MessageInjectionInCtor(this.msg);
     }
 
