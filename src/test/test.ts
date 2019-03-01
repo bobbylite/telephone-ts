@@ -1,12 +1,14 @@
 import { Telephonejs } from "..";
 import "reflect-metadata";
 import { NotHelloHandler, HelloHandler } from "./testhandlers";
-import { IHello, INotHello } from "./testinterfaces";
+import { HelloEvent, NotHelloEvent } from "./testevents";
+import { IHelloEvent, INotHelloEvent } from "./testinterfaces";
 
 var t = new Telephonejs();
 
-t.CreateQuietListeningWire<INotHello>(NotHelloHandler, "INotHello");
-t.CreateQuietListeningWire<IHello>(HelloHandler, "IHello");
+t.CreateQuietListeningWire<INotHelloEvent>("INotHello", NotHelloHandler);
+t.CreateQuietListeningWire<IHelloEvent>("IHello", HelloHandler);
 
-t.ShoutOnWire<IHello>("IHello");
-t.ShoutOnWire<INotHello>("INotHello");
+
+t.ShoutOnWire("IHello", new HelloEvent);
+t.ShoutOnWire("INotHello", new NotHelloEvent);

@@ -3,7 +3,7 @@ import { IBaseHandler } from "./types/IBaseHandler";
 import "reflect-metadata";
 
 @injectable()
-export abstract class BaseHandler<T> implements IBaseHandler<T>{
+export abstract class BaseHandler implements IBaseHandler {
     public MessageInjectionInCtor(injection: any) : any {
         this.HandleMessage(injection);
     }

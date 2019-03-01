@@ -1,4 +1,4 @@
 
-export interface IBaseHandler<T> {
+export interface IBaseHandler {
     MessageInjectionInCtor(injection: any): any;
 }

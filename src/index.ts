@@ -1,6 +1,7 @@
 import { Container, injectable } from "inversify";
 import { ITelephonejs } from "./ITelephonejs";
 import "reflect-metadata";
+import { IBaseHandler } from "./types/IBaseHandler";
 
 export class Telephonejs implements ITelephonejs {
 
@@ -11,12 +12,12 @@ export class Telephonejs implements ITelephonejs {
         this.container = new Container();
     }
 
-    public CreateQuietListeningWire<T>(Handler: any, symbolString: string) : void {
+    public CreateQuietListeningWire<T>(symbolString: string, Handler: any) : void {
         this.implementationObjet = Handler;
         this.container.bind<T>(symbolString).to(this.implementationObjet);
     }
 
-    public ShoutOnWire<T>(symbolString: string) : void {
-        this.container.get<T>(symbolString);
+    public ShoutOnWire(symbolString: string, message: any) {
+        this.container.get<IBaseHandler>(symbolString).MessageInjectionInCtor(message);
     }
 }

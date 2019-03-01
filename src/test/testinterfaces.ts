@@ -1,7 +1,7 @@
-export interface IHello {
+export interface IHelloEvent {
     msg: string;
 }
 
-export interface INotHello {
+export interface INotHelloEvent {
     msg: string;
 }
