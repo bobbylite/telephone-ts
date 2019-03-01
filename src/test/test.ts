@@ -6,9 +6,9 @@ import { IHelloEvent, INotHelloEvent } from "./testinterfaces";
 
 var t = new Telephonejs();
 
-t.CreateQuietListeningWire<INotHelloEvent>("INotHello", NotHelloHandler);
-t.CreateQuietListeningWire<IHelloEvent>("IHello", HelloHandler);
+t.CreateQuietListeningWire<INotHelloEvent>("INotHelloEvent", NotHelloHandler);
+t.CreateQuietListeningWire<IHelloEvent>("IHelloEvent", HelloHandler);
 
 
-t.ShoutOnWire("IHello", new HelloEvent);
-t.ShoutOnWire("INotHello", new NotHelloEvent);
+t.ShoutOnWire("IHelloEvent", new HelloEvent);
+t.ShoutOnWire("INotHelloEvent", new NotHelloEvent);
