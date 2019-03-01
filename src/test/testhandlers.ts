@@ -1,6 +1,7 @@
 import { BaseHandler } from "../BaseHandler";
+import { INotHelloHandler, IHelloHandler } from "./testinterfaces";
 
-export class NotHelloHandler extends BaseHandler {
+export class NotHelloHandler extends BaseHandler implements INotHelloHandler {
 
     public constructor() {
         super();
@@ -11,7 +12,7 @@ export class NotHelloHandler extends BaseHandler {
     }
 }
 
-export class HelloHandler extends BaseHandler {
+export class HelloHandler extends BaseHandler implements IHelloHandler {
 
     public constructor() {
         super();

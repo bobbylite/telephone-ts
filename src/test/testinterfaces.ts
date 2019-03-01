@@ -5,3 +5,11 @@ export interface IHelloEvent {
 export interface INotHelloEvent {
     msg: string;
 }
+
+export interface INotHelloHandler {
+
+}
+
+export interface IHelloHandler {
+    
+}
