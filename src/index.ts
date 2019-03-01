@@ -1,20 +1,22 @@
 import { Container, injectable } from "inversify";
+import { ITelephonejs } from "./ITelephonejs";
 import "reflect-metadata";
 
-export class Telephonejs<T> {
-    private Container: Container;
-    private implementationObjet: any
+export class Telephonejs implements ITelephonejs {
+
+    private container: Container;
+    private implementationObjet: any;
 
     public constructor() {
-        this.Container = new Container();
+        this.container = new Container();
     }
 
-    public CreateQuietListeningWire<T>(Handler: any, symbolString: string) {
+    public CreateQuietListeningWire<T>(Handler: any, symbolString: string) : void {
         this.implementationObjet = Handler;
-        this.Container.bind<T>(symbolString).to(this.implementationObjet);
+        this.container.bind<T>(symbolString).to(this.implementationObjet);
     }
 
-    public ShoutOnWire<T>(symbolString: string) : any {
-        this.Container.get<T>(symbolString);
+    public ShoutOnWire<T>(symbolString: string) : void {
+        this.container.get<T>(symbolString);
     }
 }
