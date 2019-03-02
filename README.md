@@ -77,7 +77,7 @@ telephonejs.ShoutOnWire<IHelloEvent>("IHelloEvent", new HelloEvent);// OUTPUT-> 
 ## Behind the scenes
 Behind the scenes we have two important files that really auto-wire up the events to the handlers.  These two files are the telephonets.ts and BaseHandler.ts.  Take a look below.
 
-telephonets.ts
+#### telephonets.ts
 ```javascript
 export class Telephonets implements ITelephonets {
 
@@ -99,7 +99,7 @@ export class Telephonets implements ITelephonets {
 }
 ```
 
-BaseHandler.ts
+#### BaseHandler.ts
 ```javascript
 @injectable()
 export abstract class BaseHandler<T> implements IBaseHandler<T> {
