@@ -4,7 +4,7 @@ import "reflect-metadata";
 
 @injectable()
 export abstract class BaseHandler<T> implements IBaseHandler<T> {
-    public MessageInjectionInCtor(injection: T) : any {
+    public ReceiveMessage(injection: T) : any {
         try {
             this.HandleMessage(injection);
         } catch(err) {

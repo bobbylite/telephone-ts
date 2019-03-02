@@ -1,9 +1,25 @@
-# ts-telephone
-Telephone-TS is a "Event Emitter-less" TypeScript Event Architecture.  Without the use of the 'events' module from node, TelephoneTS is an OOP Message Bus that allows developers to easily register their TypeScript Event Handlers to listen to when an Event message is "Shouted" on the telephone line!  
+# telephone-ts
+Telephone-ts is a "Event Emitter-less" TypeScript Event Architecture.  Without the use of the 'events' module from node, Telephone-ts is an OOP message bus that allows developers to easily register their TypeScript Event Handlers to listen to when an Event message is "Shouted" on the telephone line! 
 
-Sometimes it's just plain fun to re-invent the wheel.  I found this useful when trying to keep my code modular with InversifyJS, which is the IOC DI registering engine begind TelephoneTS. 
+Sure, there are tons of great event modules... Sometimes it's just plain fun to re-invent the wheel.  I found this useful when trying to keep my code modular with InversifyJS, which is the IOC DI registering engine begind Telephone-ts. 
 
-## How to use 
+## Run example
+There is a test script available to run to see how this repo works. 
+Run the following in your terminal.
+
+### Clone the code 
+```bash
+git clone https://github.com/bobbylite/telephone-ts.git
+cd telephone-ts/
+```
+
+### Install dependencies
+```bash
+npm install 
+npm run test
+```
+
+## How to use in project
 
 ### Step 1
 Create your Event Interfaces.  This will explain what you want your event to send over our line! 
@@ -56,4 +72,44 @@ telephonejs.CreateQuietListeningWire<IHelloEvent>("IHelloEvent", HelloHandler);
 
 
 telephonejs.ShoutOnWire<IHelloEvent>("IHelloEvent", new HelloEvent);// OUTPUT-> HelloEvent { msg: 'Hello World!' }
+```
+
+## Behind the scenes
+Behind the scenes we have two important files that really auto-wire up the events to the handlers.  These two files are the telephonets.ts and BaseHandler.ts.  Take a look below.
+
+telephonets.ts
+```javascript
+export class Telephonets implements ITelephonets {
+
+    private container: Container;
+    private implementationObjet: any;
+
+    public constructor() {
+        this.container = new Container();
+    }
+
+    public CreateQuietListeningWire<T>(symbolString: string, Handler: any) : void {
+        this.implementationObjet = Handler;
+        this.container.bind<T>(symbolString).to(this.implementationObjet);
+    }
+
+    public ShoutOnWire<T>(symbolString: string, message: T) {
+        this.container.get<IBaseHandler<T>>(symbolString).ReceiveMessage(message);
+    }
+}
+```
+
+BaseHandler.ts
+```javascript
+@injectable()
+export abstract class BaseHandler<T> implements IBaseHandler<T> {
+    public ReceiveMessage(injection: T) : any {
+        try {
+            this.HandleMessage(injection);
+        } catch(err) {
+            console.log(err);
+        }
+    }
+    protected abstract HandleMessage(message: T): any;
+}
 ```

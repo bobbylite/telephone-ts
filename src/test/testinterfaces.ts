@@ -11,5 +11,5 @@ export interface INotHelloHandler {
 }
 
 export interface IHelloHandler {
-    
+
 }

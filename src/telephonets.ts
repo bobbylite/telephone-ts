@@ -1,9 +1,9 @@
-import { Container, injectable } from "inversify";
-import { ITelephonejs } from "./ITelephonejs";
+import { Container } from "inversify";
+import { ITelephonets } from "./ITelephonets";
 import "reflect-metadata";
 import { IBaseHandler } from "./types/IBaseHandler";
 
-export class Telephonejs implements ITelephonejs {
+export class Telephonets implements ITelephonets {
 
     private container: Container;
     private implementationObjet: any;
@@ -18,6 +18,6 @@ export class Telephonejs implements ITelephonejs {
     }
 
     public ShoutOnWire<T>(symbolString: string, message: T) {
-        this.container.get<IBaseHandler<T>>(symbolString).MessageInjectionInCtor(message);
+        this.container.get<IBaseHandler<T>>(symbolString).ReceiveMessage(message);
     }
 }
