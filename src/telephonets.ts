@@ -1,5 +1,5 @@
 import { Container } from "inversify";
-import { ITelephonets } from "./ITelephonets";
+import { ITelephonets } from "./types/ITelephonets";
 import "reflect-metadata";
 import { IBaseHandler } from "./types/IBaseHandler";
 
