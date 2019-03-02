@@ -23,7 +23,7 @@ npm run test
 
 ### Step 1
 Create your Event Interfaces.  This will explain what you want your event to send over our line! 
-```javascript
+```typescript
 export interface IHelloEvent {
     msg: string;
 }
@@ -32,7 +32,7 @@ export interface IHelloEvent {
 ### Step 2
 Implement your Event so you can have everything you need.  Maybe you want to setup a service for handling an event later?  
 In this example we'll just use our greeting string we all love. 
-```javascript 
+```typescript 
 export class HelloEvent implements IHelloEvent {
     public msg: string = "Hello World!";
 }
@@ -40,7 +40,7 @@ export class HelloEvent implements IHelloEvent {
 
 ### Step 3 
 Next we'll create our event handler interfaces. This will explain what is needed to handle the event!
-```javascript 
+```typescript 
 export interface IHelloHandler {
     Logger: ILogger;
 }
@@ -48,7 +48,7 @@ export interface IHelloHandler {
 
 ### Step 4
 This is where we will implement our event handler.  We must make sure to inherit/extend the BaseHandler class provided. 
-```javascript
+```typescript
 export class HelloHandler extends BaseHandler<IHelloEvent> implements IHelloHandler {
 
     public Logger: ILogger = new Logger();
@@ -81,7 +81,7 @@ telephonejs.ShoutOnWire<IHelloEvent>("IHelloEvent", new HelloEvent); // OUTPUT->
 Behind the scenes we have two important files that really auto-wire up the events to the handlers.  These two files are the telephonets.ts and BaseHandler.ts.  telephonets uses InversifyJs' Container to auto-wire similar to how Autofac or other IOC libraries work.  The BaseHandler is what we need our custom handlers to inherit from to ensure the project is structured properly.  Take a look below.
 
 #### telephonets.ts
-```javascript
+```typescript
 export class Telephonets implements ITelephonets {
 
     private container: Container;
@@ -103,7 +103,7 @@ export class Telephonets implements ITelephonets {
 ```
 
 #### BaseHandler.ts
-```javascript
+```typescript
 @injectable()
 export abstract class BaseHandler<T> implements IBaseHandler<T> {
     public ReceiveMessage(injection: T) : any {
