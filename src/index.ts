@@ -17,7 +17,7 @@ export class Telephonejs implements ITelephonejs {
         this.container.bind<T>(symbolString).to(this.implementationObjet);
     }
 
-    public ShoutOnWire(symbolString: string, message: any) {
-        this.container.get<IBaseHandler>(symbolString).MessageInjectionInCtor(message);
+    public ShoutOnWire<T>(symbolString: string, message: T) {
+        this.container.get<IBaseHandler<T>>(symbolString).MessageInjectionInCtor(message);
     }
 }

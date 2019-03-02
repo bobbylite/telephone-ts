@@ -1,7 +1,7 @@
 # ts-telephone
-Telephone-TS is a "Event Emitter-less" TypeScript Event Architecture.  Without the use of the 'events' library, TelephoneTS is an OOP Message Bus that allows developers to easily register their TypeScript Event Handlers to listen to when an Event message is "Shouted" on the telephone line!  
+Telephone-TS is a "Event Emitter-less" TypeScript Event Architecture.  Without the use of the 'events' module from node, TelephoneTS is an OOP Message Bus that allows developers to easily register their TypeScript Event Handlers to listen to when an Event message is "Shouted" on the telephone line!  
 
-Sometimes it's just plain fun to re-invent the wheel for no reason.  I found this useful when trying to keep my code modular with InversifyJS, which is the registering engine begind TelephoneTS. 
+Sometimes it's just plain fun to re-invent the wheel.  I found this useful when trying to keep my code modular with InversifyJS, which is the IOC DI registering engine begind TelephoneTS. 
 
 ## How to use 
 
@@ -33,14 +33,15 @@ export interface IHelloHandler {
 ### Step 4
 This is where we will implement our event handler.  We must make sure to inherit/extend the BaseHandler class provided. 
 ```javascript
-export class HelloHandler extends BaseHandler implements IHelloHandler {
+export class HelloHandler extends BaseHandler<IHelloEvent> implements IHelloHandler {
+
     public Logger: ILogger = new Logger();
 
     public constructor() {
         super();
     }
 
-    public HandleMessage(message: any) {
+    public HandleMessage(message: IHelloEvent) {
         this.Logger.log(message);
     }
 }
@@ -54,5 +55,5 @@ var telephonejs = new Telephonejs();
 telephonejs.CreateQuietListeningWire<IHelloEvent>("IHelloEvent", HelloHandler);
 
 
-telephonejs.ShoutOnWire("IHelloEvent", new HelloEvent); // OUTPUT-> HelloEvent { msg: 'Hello World!' }
+telephonejs.ShoutOnWire<IHelloEvent>("IHelloEvent", new HelloEvent);// OUTPUT-> HelloEvent { msg: 'Hello World!' }
 ```

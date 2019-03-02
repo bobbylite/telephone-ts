@@ -3,13 +3,13 @@ import { IBaseHandler } from "./types/IBaseHandler";
 import "reflect-metadata";
 
 @injectable()
-export abstract class BaseHandler implements IBaseHandler {
-    public MessageInjectionInCtor(injection: any) : any {
+export abstract class BaseHandler<T> implements IBaseHandler<T> {
+    public MessageInjectionInCtor(injection: T) : any {
         try {
             this.HandleMessage(injection);
         } catch(err) {
             console.log(err);
         }
     }
-    protected abstract HandleMessage(message: any): any;
+    protected abstract HandleMessage(message: T): any;
 }

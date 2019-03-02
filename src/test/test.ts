@@ -10,5 +10,5 @@ telephonejs.CreateQuietListeningWire<INotHelloEvent>("INotHelloEvent", NotHelloH
 telephonejs.CreateQuietListeningWire<IHelloEvent>("IHelloEvent", HelloHandler);
 
 
-telephonejs.ShoutOnWire("IHelloEvent", new HelloEvent);
-telephonejs.ShoutOnWire("INotHelloEvent", new NotHelloEvent);
+telephonejs.ShoutOnWire<IHelloEvent>("IHelloEvent", new HelloEvent);
+telephonejs.ShoutOnWire<INotHelloEvent>("INotHelloEvent", new NotHelloEvent);
