@@ -69,12 +69,12 @@ Both CreateQuietListeningWire and ShoutOnWire require the following:
 TelephonetsInstance.CreateQuietListeningWire<EventInterface>("EventInterface", HandlerClassReference);
 TelephonetsInstance.ShoutOnWire<EventInterface>("EventInterface", new EventClass);
 ```typescript
-var telephonejs = new Telephonejs();
+var telephonets = new Telephonets();
 
-telephonejs.CreateQuietListeningWire<IHelloEvent>("IHelloEvent", HelloHandler);
+telephonets.CreateQuietListeningWire<IHelloEvent>("IHelloEvent", HelloHandler);
 
 
-telephonejs.ShoutOnWire<IHelloEvent>("IHelloEvent", new HelloEvent); // OUTPUT-> HelloEvent { msg: 'Hello World!' }
+telephonets.ShoutOnWire<IHelloEvent>("IHelloEvent", new HelloEvent); // OUTPUT-> HelloEvent { msg: 'Hello World!' }
 ```
 
 ## Behind the scenes
