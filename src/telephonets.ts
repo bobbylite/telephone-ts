@@ -6,15 +6,13 @@ import { IBaseHandler } from "./types/IBaseHandler";
 export class Telephonets implements ITelephonets {
 
     private container: Container;
-    private implementationObjet: any;
 
     public constructor() {
         this.container = new Container();
     }
 
     public CreateQuietListeningWire<T>(symbolString: string, Handler: any) : void {
-        this.implementationObjet = Handler;
-        this.container.bind<T>(symbolString).to(this.implementationObjet);
+        this.container.bind<T>(symbolString).to(Handler);
     }
 
     public ShoutOnWire<T>(symbolString: string, message: T) : void {
