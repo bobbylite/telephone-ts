@@ -1,4 +1,4 @@
-# telephone-ts [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Telephone-ts%20TypeScript%20Architecture%204&url=https://github.com/bobbylite/telephone-ts&hashtags=Inversion-of-Control,Events,TypeScript,TelephoneTS)
+# telephone-ts [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Telephone-ts%20TypeScript%20Architecture%20&url=https://github.com/bobbylite/telephone-ts&hashtags=Inversion-of-Control,Events,TypeScript,TelephoneTS)
 Telephone-ts is a "Event Emitter-less" TypeScript Event Architecture.  Without the use of the 'events' module from node, Telephone-ts is an OOP message bus that allows developers to easily register their TypeScript Event Handlers to listen to when an Event message is "Shouted" on the telephone line! 
 
 Sure, there are tons of great event modules... Sometimes it's just plain fun to re-invent the wheel.  I found this useful when trying to keep my code modular with InversifyJS, which is the IOC DI registering engine begind Telephone-ts. 
