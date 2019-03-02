@@ -66,7 +66,7 @@ export class HelloHandler extends BaseHandler<IHelloEvent> implements IHelloHand
 ### Step 5
 We now have everything we need to register, and emit events... Or create our quiet listening wire and shout on that wire! 
 Both CreateQuietListeningWire and ShoutOnWire require the following: 
-TelephonetsInstance.CreateQuietListeningWire<EventInterface>("EventInterface", HanlderClass);
+TelephonetsInstance.CreateQuietListeningWire<EventInterface>("EventInterface", HandlerClassReference);
 TelephonetsInstance.ShoutOnWire<EventInterface>("EventInterface", new EventClass);
 ```javascript
 var telephonejs = new Telephonejs();
