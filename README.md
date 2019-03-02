@@ -68,7 +68,7 @@ We now have everything we need to register, and emit events... Or create our qui
 Both CreateQuietListeningWire and ShoutOnWire require the following: 
 TelephonetsInstance.CreateQuietListeningWire<EventInterface>("EventInterface", HandlerClassReference);
 TelephonetsInstance.ShoutOnWire<EventInterface>("EventInterface", new EventClass);
-```javascript
+```typescript
 var telephonejs = new Telephonejs();
 
 telephonejs.CreateQuietListeningWire<IHelloEvent>("IHelloEvent", HelloHandler);
