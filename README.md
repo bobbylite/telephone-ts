@@ -75,7 +75,7 @@ telephonejs.ShoutOnWire<IHelloEvent>("IHelloEvent", new HelloEvent);// OUTPUT-> 
 ```
 
 ## Behind the scenes
-Behind the scenes we have two important files that really auto-wire up the events to the handlers.  These two files are the telephonets.ts and BaseHandler.ts.  Take a look below.
+Behind the scenes we have two important files that really auto-wire up the events to the handlers.  These two files are the telephonets.ts and BaseHandler.ts.  telephonets uses InversifyJs' Container to auto-wire similar to how Autofac or other IOC libraries work.  The BaseHandler is what we need our custom handlers to inherit from to ensure the project is structured properly.  Take a look below.
 
 #### telephonets.ts
 ```javascript
