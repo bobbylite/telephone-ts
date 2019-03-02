@@ -57,7 +57,7 @@ export class HelloHandler extends BaseHandler<IHelloEvent> implements IHelloHand
         super();
     }
 
-    public HandleMessage(message: IHelloEvent) {
+    protected HandleMessage(message: IHelloEvent) {
         this.Logger.log(message);
     }
 }
