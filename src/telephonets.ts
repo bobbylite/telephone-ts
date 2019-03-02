@@ -17,7 +17,7 @@ export class Telephonets implements ITelephonets {
         this.container.bind<T>(symbolString).to(this.implementationObjet);
     }
 
-    public ShoutOnWire<T>(symbolString: string, message: T) {
+    public ShoutOnWire<T>(symbolString: string, message: T) : void {
         this.container.get<IBaseHandler<T>>(symbolString).ReceiveMessage(message);
     }
 }
