@@ -1,4 +1,4 @@
-import { Container } from "inversify";
+import { Container, typeConstraint } from "inversify";
 import { ITelephonets } from "./types/ITelephonets";
 import "reflect-metadata";
 import { IBaseHandler } from "./types/IBaseHandler";
@@ -11,11 +11,11 @@ export class Telephonets implements ITelephonets {
         this.container = new Container();
     }
 
-    public CreateQuietListeningWire<T>(symbolString: string, Handler: any) : void {
+    public Register<T>(symbolString: string, Handler: any) : void {
         this.container.bind<T>(symbolString).to(Handler);
     }
 
-    public ShoutOnWire<T>(symbolString: string, message: T) : void {
+    public Call<T>(symbolString: string, message: any) : void {
         this.container.get<IBaseHandler<T>>(symbolString).ReceiveMessage(message);
     }
 }

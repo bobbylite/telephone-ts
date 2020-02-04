@@ -1,4 +1,4 @@
 export interface ITelephonets {
-    CreateQuietListeningWire(Handler: any, symbolString: string): void;
-    ShoutOnWire(symbolString: string, message: any): void;
+    Register<T>(InterfaceObject: any, Service: any): void;
+    Call<T>(name: any, injectObject: any): void
 }
