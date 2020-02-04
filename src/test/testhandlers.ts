@@ -7,8 +7,10 @@ export class NotHelloHandler extends BaseHandler<INotHelloEvent> implements INot
         super();
     }
 
-    protected HandleMessage(message: INotHelloEvent) {
+    protected HandleMessage(message: INotHelloEvent) : INotHelloEvent{
         console.log(message);
+
+        return message;
     }
 }
 
@@ -18,7 +20,9 @@ export class HelloHandler extends BaseHandler<IHelloEvent> implements IHelloHand
         super();
     }
 
-    protected HandleMessage(message: IHelloEvent) {
+    protected HandleMessage(message: IHelloEvent) : IHelloEvent{
         console.log(message);
+
+        return message;
     }
 }

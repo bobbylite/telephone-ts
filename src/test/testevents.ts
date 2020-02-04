@@ -6,5 +6,4 @@ export class HelloEvent implements IHelloEvent {
 
 export class NotHelloEvent implements INotHelloEvent {
     msg: string = "Not Hello World!";
-
 }

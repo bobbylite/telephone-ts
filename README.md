@@ -69,12 +69,19 @@ Both CreateQuietListeningWire and ShoutOnWire require the following:
 TelephonetsInstance.CreateQuietListeningWire<EventInterface>("EventInterface", HandlerClassReference);
 TelephonetsInstance.ShoutOnWire<EventInterface>("EventInterface", new EventClass);
 ```typescript
-var telephonets = new Telephonets();
+const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
-telephonets.CreateQuietListeningWire<IHelloEvent>("IHelloEvent", HelloHandler);
+async function Test() {
+    var telephonets = new Telephonets();
+
+    telephonets.Register<INotHelloEvent>("INotHelloEvent", NotHelloHandler);
+    telephonets.Register<IHelloEvent>("IHelloEvent", HelloHandler);
 
 
-telephonets.ShoutOnWire<IHelloEvent>("IHelloEvent", new HelloEvent); // OUTPUT-> HelloEvent { msg: 'Hello World!' }
+    telephonets.Call<IHelloEvent>("IHelloEvent", new HelloEvent); // outputs -> HelloEvent { msg: 'Hello World!' }
+    await sleep(1000);
+    telephonets.Call<INotHelloEvent>("INotHelloEvent", new NotHelloEvent); // outputs -> NotHelloEvent { msg: 'Not Hello World!' }
+}
 ```
 
 ## Behind the scenes
@@ -90,11 +97,11 @@ export class Telephonets implements ITelephonets {
         this.container = new Container();
     }
 
-    public CreateQuietListeningWire<T>(symbolString: string, Handler: any) : void {
+    public Register<T>(symbolString: string, Handler: any) : void {
         this.container.bind<T>(symbolString).to(Handler);
     }
 
-    public ShoutOnWire<T>(symbolString: string, message: T) : void {
+    public Call<T>(symbolString: string, message: any) : void {
         this.container.get<IBaseHandler<T>>(symbolString).ReceiveMessage(message);
     }
 }
