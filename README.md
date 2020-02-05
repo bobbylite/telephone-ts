@@ -42,7 +42,7 @@ export class HelloEvent implements IHelloEvent {
 Next we'll create our event handler interfaces. This will explain what is needed to handle the event!
 ```typescript 
 export interface IHelloHandler {
-    Logger: ILogger;
+    // anything you want your event handler to have.
 }
 ```
 
@@ -51,14 +51,14 @@ This is where we will implement our event handler.  We must make sure to inherit
 ```typescript
 export class HelloHandler extends BaseHandler<IHelloEvent> implements IHelloHandler {
 
-    public Logger: ILogger = new Logger();
-
     public constructor() {
         super();
     }
 
-    protected HandleMessage(message: IHelloEvent) {
-        this.Logger.log(message);
+    protected HandleMessage(message: IHelloEvent) : IHelloEvent{
+        console.log(message);
+
+        return message;
     }
 }
 ```
@@ -111,13 +111,13 @@ export class Telephonets implements ITelephonets {
 ```typescript
 @injectable()
 export abstract class BaseHandler<T> implements IBaseHandler<T> {
-    public ReceiveMessage(injection: T) : any {
+    public ReceiveMessage(injection: T) : void {
         try {
             this.HandleMessage(injection);
         } catch(err) {
             console.log(err);
         }
     }
-    protected abstract HandleMessage(message: T): any;
+    protected abstract HandleMessage(message: T): T;
 }
 ```
